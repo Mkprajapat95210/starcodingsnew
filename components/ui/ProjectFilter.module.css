@@ -1,0 +1,43 @@
+.filterArea {
+  margin-bottom: 3rem;
+  width: 100%;
+}
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.container::-webkit-scrollbar {
+  display: none;
+}
+.btn {
+  padding: 8px 28px;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s;
+  text-decoration: none !important;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  color: white !important;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-primary), sans-serif;
+  white-space: nowrap;
+}
+.btnActive {
+  background-color: #FF0055;
+}
+.btnInactive {
+  background-color: #1A1A1A;
+}
+.btnInactive:hover {
+  background-color: #FF0055;
+}

@@ -1,0 +1,279 @@
+/* Minimal globals - all design CSS comes from /assets/css/ loaded in layout.tsx */
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
+}
+
+/* Fix for Select dropdowns to match input fields in the theme */
+.contact-form-wrapper select.input-field {
+    width: 100%;
+    height: 60px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0 20px;
+    color: #a0a0a0;
+    font-size: 16px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23a0a0a0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    transition: 0.3s;
+}
+
+.contact-form-wrapper select.input-field:focus {
+    border-color: #ff3838;
+    color: #fff;
+}
+
+.contact-form-wrapper select.input-field option {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px;
+}
+
+/* Custom Webkit Scrollbar for Dropdown Menu */
+.custom-dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-dropdown-list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+.custom-dropdown-list::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+[data-theme='light'] .custom-dropdown-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+}
+
+.custom-dropdown-list::-webkit-scrollbar-thumb:hover {
+    background: #ff3838;
+}
+
+/* Swiper Pagination Red Color Fix */
+.tmp-swiper-pagination .swiper-pagination-bullet-active {
+    background: #ff3838 !important;
+    opacity: 1;
+}
+
+.tmp-swiper-pagination .swiper-pagination-bullet {
+    background: #555;
+}
+
+[data-theme='light'] .tmp-swiper-pagination .swiper-pagination-bullet {
+    background: #ccc;
+}
+
+[data-theme='light'] .contact-form-wrapper select.input-field option {
+    background-color: #ffffff;
+    color: #333;
+}
+
+[data-theme='light'] .testimonial-card.style-2 {
+    background: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme='light'] .testimonial-card.style-2 h2.text-doc,
+[data-theme='light'] .testimonial-card.style-2 p.review-text {
+    color: #333 !important;
+}
+
+[data-theme='light'] .testimonial-card.style-2 h3.card-title,
+[data-theme='light'] .testimonial-card.style-2 h3.name {
+    color: #111 !important;
+}
+
+[data-theme='light'] .testimonial-card.style-2 .client-info {
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme='light'] .testimonial-card.style-2 p.date {
+    color: rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme='light'] .newsletter-form-1 input {
+    color: #333 !important;
+}
+
+[data-theme='light'] .newsletter-form-1 input::placeholder {
+    color: #999;
+}
+
+/* Header Alignment */
+.actions-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ===========================================
+   SERVICE ITEMS HOVER FIX (HomeMySkill)
+   =========================================== */
+
+.services-widget.v1 .service-item {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+    z-index: 1;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.services-widget.v1 .service-item:hover {
+    background: var(--color-primary) !important;
+}
+
+/* Ensure text and icons turn white on hover for BOTH dark and light modes */
+.services-widget.v1 .service-item:hover .main-title,
+.services-widget.v1 .service-item:hover .sub-title,
+.services-widget.v1 .service-item:hover .card-para,
+.services-widget.v1 .service-item:hover .read-more-btn,
+.services-widget.v1 .service-item:hover .read-more-btn .read-more-icon i,
+.services-widget.v1 .service-item:hover .card-icon i {
+    color: #ffffff !important;
+}
+
+/* Icon circle border and background adjustment on hover */
+.services-widget.v1 .service-item:hover .card-icon {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Remove default active-bg if it still exists in CSS */
+.services-widget.v1 .active-bg {
+    display: none !important;
+}
+
+/* ===========================================
+   HOME BANNER - PREMIUM OVERLAY & TEXT
+   =========================================== */
+
+.banner-image-overlay-new {
+    position: absolute;
+    bottom: -10px;
+    left: -10%;
+    width: 120%;
+    height: 50%;
+    background: linear-gradient(
+        to top,
+        var(--color-secondary) 30%,
+        rgba(6, 6, 6, 0.4) 60%,
+        transparent 100%
+    );
+    filter: blur(20px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Light mode overlay adjustment for smooth blending */
+[data-theme='light'] .banner-image-overlay-new {
+    background: linear-gradient(
+        to top,
+        var(--color-secondary) 30%,
+        rgba(246, 246, 246, 0.6) 60%,
+        transparent 100%
+    );
+    filter: blur(30px);
+    height: 60%;
+    bottom: -20px;
+}
+
+/* WEB DESIGN - Background decorative text */
+.outlined-text {
+    position: absolute;
+    bottom: 5% !important;
+    left: 5% !important;
+    width: 95% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 0 2% !important;
+    -webkit-text-stroke: 1.25px var(--color-gray) !important;
+    color: transparent !important;
+    opacity: 0.8;
+    z-index: -1 !important;
+    font-size: 212.855px !important;
+    font-family: var(--font-primary) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+/* Ensure people image z-index is above background text on desktop */
+@media (min-width: 992px) {
+    .banner-three-main-wrapper .bg-benner-img-three {
+        z-index: 1 !important;
+    }
+}
+
+/* APP DESIGN - Foreground decorative text */
+.outlined-text-red {
+    position: absolute;
+    bottom: 2% !important;
+    left: 0 !important;
+    width: 100%;
+    text-align: center;
+    -webkit-text-stroke: 1.5px #ff3838 !important;
+    color: transparent !important;
+    opacity: 0.9;
+    z-index: 2 !important;
+    font-size: 150px !important;
+    font-family: var(--font-primary) !important;
+    font-weight: 700 !important;
+    pointer-events: none;
+}
+
+/* ===========================================
+   RESPONSIVE BREAKPOINTS
+   =========================================== */
+
+/* Tablet landscape / small desktop (992px - 1199px) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .outlined-text {
+        font-size: 110px !important;
+        bottom: 20% !important;
+    }
+
+    .outlined-text-red {
+        font-size: 100px !important;
+        bottom: 8% !important;
+    }
+}
+
+/* Tablet portrait (768px - 991px): hide decorative text, clean layout */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .banner-image-overlay-new {
+        height: 70%;
+        bottom: -20px;
+        filter: blur(30px);
+    }
+
+    .outlined-text,
+    .outlined-text-red {
+        display: none !important;
+    }
+}
+
+/* Mobile (max 767px) */
+@media only screen and (max-width: 767px) {
+    .banner-image-overlay-new {
+        height: 60%;
+        bottom: -10px;
+        filter: blur(20px);
+    }
+
+    .outlined-text,
+    .outlined-text-red {
+        display: none !important;
+    }
+}

@@ -1,13 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
 export default function WelcomePopup() {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [popupData, setPopupData] = useState<{ active: boolean; desktop_image_url: string; mobile_image_url: string } | null>(null);
+  const [popupData, setPopupData] = useState<{ active: boolean; desktop_image_url: string; mobile_image_url: string; redirect_url: string } | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -41,7 +42,8 @@ export default function WelcomePopup() {
           setPopupData({
             active: true,
             desktop_image_url: '',
-            mobile_image_url: ''
+            mobile_image_url: '',
+            redirect_url: ''
           });
         } else if (data) {
           setPopupData(data);
@@ -94,6 +96,20 @@ export default function WelcomePopup() {
     ? (popupData?.mobile_image_url || '') 
     : (popupData?.desktop_image_url || '');
 
+  const redirectUrl = popupData?.redirect_url || '';
+
+  const handleImageClick = () => {
+    if (redirectUrl) {
+      localStorage.setItem('hasSeenPopup', 'true');
+      // Check if it's an internal or external link
+      if (redirectUrl.startsWith('http')) {
+        window.open(redirectUrl, '_blank');
+      } else {
+        window.location.href = redirectUrl;
+      }
+    }
+  };
+
   return (
     <div 
       style={{
@@ -144,16 +160,35 @@ export default function WelcomePopup() {
           maxHeight: '700px',
           backgroundColor: '#1a1a1a',
           borderRadius: '12px',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          cursor: redirectUrl ? 'pointer' : 'default'
         }}>
           {imageUrl ? (
-            <Image
-              src={imageUrl}
-              alt="Welcome Popup"
-              fill
-              style={{ objectFit: 'cover' }}
-              priority
-            />
+            <>
+              <Image
+                src={imageUrl}
+                alt="Welcome Popup"
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+                onClick={handleImageClick}
+              />
+              {redirectUrl && (
+                <div style={{
+                  position: 'absolute',
+                  bottom: '20px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  color: 'white',
+                  fontSize: '14px',
+                  backgroundColor: 'rgba(0,0,0,0.6)',
+                  padding: '8px 16px',
+                  borderRadius: '20px'
+                }}>
+                  Click to visit →
+                </div>
+              )}
+            </>
           ) : (
             <div style={{
               display: 'flex',
@@ -165,7 +200,7 @@ export default function WelcomePopup() {
             }}>
               <div>
                 <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>Welcome to Starcode!</h2>
-                <p style={{ color: '#888' }}>Add popup images in Supabase to see them here.</p>
+                <p style={{ color: '#888' }}>Add popup images & link in Supabase to see them here.</p>
               </div>
             </div>
           )}
